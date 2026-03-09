@@ -41,6 +41,7 @@ La biometría es el componente que mayor presión ejerce sobre la topología de 
 Funcionamiento de las Estaciones Biométricas
 Para mitigar los riesgos de una caída de conectividad WAN, la topología de biometría en Corferias utiliza un modelo híbrido de Edge Computing. Cada dispositivo o estación de verificación cuenta con una base de datos local (Censo de la Mesa) cargada en formato ISO encriptado. Cuando un ciudadano pone su huella o presenta su rostro, el dispositivo realiza el cotejo 1:1 localmente contra la información almacenada en el chip de la cédula o en su memoria interna, lo que reduce la latencia a menos de un segundo.
 Posteriormente, la estación sincroniza el "log" de la votación con el servidor central de la RNEC. Esta sincronización ocurre a través de redes inalámbricas privadas (APN dedicados) o mediante la red LAN segura del pabellón, utilizando túneles IPsec. Este flujo de datos permite que las autoridades tengan una visión en tiempo real de la participación sin comprometer el secreto del voto, ya que el sistema biométrico solo certifica la identidad y no la elección del ciudadano.
+<img width="1032" height="544" alt="image" src="https://github.com/user-attachments/assets/46b28e21-22b7-4265-807d-1b33e95dea5d" />
 
  
 
@@ -58,6 +59,9 @@ Capas de Protección Implementadas
 2.	Firewalls de Próxima Generación (NGFW): Implementados en el Core y en los IDFs de cada pabellón, realizan inspección profunda de paquetes (DPI) para identificar comportamientos anómalos o intentos de inyección SQL en las bases de datos de escrutinio.
 3.	Detección y Respuesta (EDR/XDR): Los terminales (laptops y estaciones de trabajo) utilizados por los jurados y escrutadores cuentan con software que monitorea actividades sospechosas en tiempo real, bloqueando cualquier intento de conexión no autorizada a puertos críticos.
 4.	Aislamiento de Bases de Datos: Las bases de datos que contienen el censo y los resultados están aisladas en un segmento de red que solo permite conexiones desde aplicaciones autorizadas, impidiendo el acceso directo a nivel de red.
+
+<img width="1029" height="418" alt="image" src="https://github.com/user-attachments/assets/0c2d5bf9-99b1-4463-a149-32382ba73d9e" />
+
 Resiliencia Física y Energía
 La topología de red se sustenta sobre una infraestructura de soporte vital. Corferias garantiza esquemas de contingencia que cubren ausencias de fluido eléctrico mediante plantas de emergencia y UPS (Uninterruptible Power Supply) en cada nodo de red. Esto es vital para evitar la corrupción de datos en las bases de datos SQL de escrutinio durante un corte de energía imprevisto. Además, el cierre de vías y perímetros de seguridad alrededor de Corferias actúa como una capa de "seguridad física de la red", impidiendo que atacantes tengan acceso físico a los puntos de red o cámaras de inspección de cableado.
 Retos Técnicos y Hallazgos en la Auditoría de Red
@@ -92,3 +96,4 @@ Port Security: En los puertos de la VLAN 20, para que solo las MAC Address de lo
 Capa 3 (Routing y Alta Disponibilidad):HSRP (Hot Standby Router Protocol): Para crear una puerta de enlace virtual (Gateway) redundante. Si el switch Core A falla, el Core B asume el enrutamiento sin desconectar los equipos.OSPFv2: Protocolo de enrutamiento dinámico interno para que los equipos de Corferias conozcan las rutas.
 Seguridad perimetral:IPsec VPN (Site-to-Site): Túnel cifrado desde el Router de Borde de Corferias hasta un Router que simule el "Data Center de la Registraduría Nacional".ACLs (Listas de Control de Acceso): Reglas para bloquear que la VLAN de Prensa (40) haga ping o se comunique con la VLAN de Resultados (20).
 4.	Armado de un pabellon
+<img width="763" height="691" alt="PRIMER PABELLON" src="https://github.com/user-attachments/assets/ef437af6-8222-4112-bbe7-cdc093aea5af" />
